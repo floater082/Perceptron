@@ -1,10 +1,30 @@
 # app.py
 # 퍼셉트론 2D 분류 시각화 데모 (Streamlit 버전)
 
+# app.py
+
 import time
 import numpy as np
 import matplotlib.pyplot as plt
 import streamlit as st
+
+# 👇 여기 추가
+from matplotlib import font_manager, rc
+import os
+
+# 레포 루트에 올려둔 폰트 파일 이름
+FONT_PATH = os.path.join(os.path.dirname(__file__), "NanumGothic.ttf")
+
+if os.path.exists(FONT_PATH):
+    font_manager.fontManager.addfont(FONT_PATH)
+    font_prop = font_manager.FontProperties(fname=FONT_PATH)
+    plt.rcParams["font.family"] = font_prop.get_name()
+    # 마이너스 기호 깨지는 것 방지
+    plt.rcParams["axes.unicode_minus"] = False
+else:
+    # 혹시 폰트 파일을 못 찾았을 때 대비
+    st.warning("한글 폰트 파일(NanumGothic.ttf)을 찾지 못했습니다. 한글이 깨져 보일 수 있습니다.")
+
 
 
 # -----------------------------
